@@ -1,5 +1,4 @@
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 using top_bod_be.Models;
 
 var builder = WebApplication.CreateBuilder(args);
