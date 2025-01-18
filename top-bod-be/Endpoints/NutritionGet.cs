@@ -7,7 +7,7 @@ namespace top_bod_be.Controllers
 {
     public class NutritionGet : EndpointBaseAsync
         .WithRequest<string>
-        .WithResult<List<NutritionDetails>>
+        .WithResult<List<NutritionDetail>>
     {
         private readonly INutritionService _nutritionService;
 
@@ -17,7 +17,7 @@ namespace top_bod_be.Controllers
         }
 
         [HttpGet("api/nutrition")]
-        public override Task<List<NutritionDetails>> HandleAsync(
+        public override Task<List<NutritionDetail>> HandleAsync(
             [FromQuery(Name ="query")] string request, 
             CancellationToken cancellationToken = default)
         {

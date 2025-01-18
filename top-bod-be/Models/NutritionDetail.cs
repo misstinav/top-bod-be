@@ -1,6 +1,6 @@
 ﻿namespace top_bod_be.Models
 {
-    public class NutritionDetails
+    public class NutritionDetail
     {
         public int Id { get; set; }
         public string FoodName { get; set; }

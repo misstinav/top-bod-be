@@ -6,6 +6,6 @@ namespace top_bod_be.Models
     {
         public NutritionDetailsContext(DbContextOptions<NutritionDetailsContext> options) : base(options){ }
 
-        public DbSet<NutritionDetails> NutritionDetails { get; set; } = null!;
+        public DbSet<NutritionDetail> NutritionDetails { get; set; } = null!;
     }
 }

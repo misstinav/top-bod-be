@@ -4,6 +4,6 @@ namespace top_bod_be.Services
 {
     public interface INutritionService
     {
-        Task<List<NutritionDetails>> SearchReturnsNutritionDetails(string query);
+        Task<List<NutritionDetail>> SearchReturnsNutritionDetails(string query);
     }
 }

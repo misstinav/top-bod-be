@@ -13,9 +13,9 @@ namespace top_bod_be.Services
             _config = config;
             _client = client;
         }
-        public async Task<List<NutritionDetails>> SearchReturnsNutritionDetails(string query)
+        public async Task<List<NutritionDetail>> SearchReturnsNutritionDetails(string query)
         {
-            var resultedNutrition = new List<NutritionDetails>();
+            var resultedNutrition = new List<NutritionDetail>();
             //TODO: make a call to the db to see if the data is there first, if not call the third party api
 
             //TODO: figure out how to encode url, also need to plug in api key
@@ -31,7 +31,7 @@ namespace top_bod_be.Services
 
             //TODO: do I want to return every item nutrition details or just the first one?
             //how is it all going to be handled?
-            var itemNutrition = await response.Content.ReadFromJsonAsync<NutritionDetails>();
+            var itemNutrition = await response.Content.ReadFromJsonAsync<NutritionDetail>();
 
             return resultedNutrition;
         }
