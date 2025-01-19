@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.WebUtilities;
+using System.Text;
+using System.Web;
 using top_bod_be.Data;
 using top_bod_be.Models;
 
@@ -24,9 +26,10 @@ namespace top_bod_be.Services
             { 
                 return localDbResult;
             }
-            //TODO: figure out how to encode url, also need to plug in api key
+
             Dictionary<string, string?> queryString = new Dictionary<string, string?> { { "query", query } };
-            var uri = QueryHelpers.AddQueryString("api URL", queryString);
+            var uri = QueryHelpers.AddQueryString(_config["apiURL"], queryString);
+            
             var response = await _client.GetAsync(uri);
 
             if (!response.IsSuccessStatusCode)
@@ -39,5 +42,15 @@ namespace top_bod_be.Services
 
             return resultedNutrition;
         }
+
+        private static string UrlEncode(string str)
+        {
+            if (str == null)
+            {
+                return null;
+            }
+            return HttpUtility.UrlEncode(str, Encoding.UTF8);
+        }
     }
+
 }
