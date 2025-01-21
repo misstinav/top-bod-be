@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using top_bod_be;
 using top_bod_be.Data;
 using top_bod_be.Models;
 using top_bod_be.Services;
@@ -11,7 +12,8 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddHttpClient("HttpClient", client => client.DefaultRequestHeaders.Add("X-Api-Key", builder.Configuration["token"]));
+builder.Services.AddHttpClient();
+
 builder.Services.AddDbContext<NutritionDetailsContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("NutritionDetailsContext")));
 builder.Services.AddScoped<INutritionService, NutritionService>();
 builder.Services.AddScoped<IDataRepo, DataRepo>();

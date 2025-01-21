@@ -28,7 +28,8 @@ namespace top_bod_be.Services
             }
 
             Dictionary<string, string?> queryString = new Dictionary<string, string?> { { "query", query } };
-            var uri = QueryHelpers.AddQueryString(_config["apiURL"], queryString);
+            var uri = QueryHelpers.AddQueryString(Credentials.BaseUrl, queryString);
+            _client.DefaultRequestHeaders.Add("X-Api-Key", Credentials.ApiKey);
             
             var response = await _client.GetAsync(uri);
 
