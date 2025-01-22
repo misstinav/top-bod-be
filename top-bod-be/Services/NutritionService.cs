@@ -1,6 +1,4 @@
 ﻿using Microsoft.AspNetCore.WebUtilities;
-using System.Text;
-using System.Web;
 using top_bod_be.Data;
 using top_bod_be.Models;
 
@@ -20,7 +18,7 @@ namespace top_bod_be.Services
         }
         public async Task<List<NutritionDetail>> SearchReturnsNutritionDetails(string query)
         {
-            var resultedNutrition = new List<NutritionDetail>();
+            var results = new List<NutritionDetail>();
             var localDbResult = await _data.GetNutritionByName(query);
             if (localDbResult != null && localDbResult.Count > 0) 
             { 
@@ -39,13 +37,14 @@ namespace top_bod_be.Services
                 return [];
             }
 
-            var itemNutrition = await response.Content.ReadFromJsonAsync<NutritionDetail>();
+            var json = await response.Content.ReadAsStringAsync();
 
-            return resultedNutrition;
-        }
+            //TODO: convert the json and pull the data within the 'items' kv pair
+            //var items = JsonSerializer.Serialize(json);
+            //var foodItem = JsonSerializer.Deserialize<NutritionDetail>(stringContent);
 
             var itemNutrition = new NutritionDetail
-        {
+            {
                 FoodName = foodItem.FoodName,
                 Calories = foodItem.Calories,
                 ServingInGrams = foodItem.ServingInGrams,
