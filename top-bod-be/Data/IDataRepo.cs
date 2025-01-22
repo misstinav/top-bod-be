@@ -5,5 +5,6 @@ namespace top_bod_be.Data
     public interface IDataRepo
     {
         Task<List<NutritionDetail>> GetNutritionByName(string query);
+        Task SaveNutrition(NutritionDetail foodNutrition);
     }
 }

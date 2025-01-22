@@ -44,13 +44,20 @@ namespace top_bod_be.Services
             return resultedNutrition;
         }
 
-        private static string UrlEncode(string str)
+            var itemNutrition = new NutritionDetail
         {
-            if (str == null)
-            {
-                return null;
-            }
-            return HttpUtility.UrlEncode(str, Encoding.UTF8);
+                FoodName = foodItem.FoodName,
+                Calories = foodItem.Calories,
+                ServingInGrams = foodItem.ServingInGrams,
+                TotalCarbsInGrams = foodItem.TotalCarbsInGrams,
+                TotalProteinInGrams = foodItem.TotalProteinInGrams,
+                TotalFatInGrams = foodItem.TotalFatInGrams
+            };
+            
+            //await _data.SaveNutrition(itemNutrition);
+            results.Add(itemNutrition);
+
+            return results;
         }
     }
 
