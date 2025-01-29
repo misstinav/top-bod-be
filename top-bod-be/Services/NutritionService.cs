@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.WebUtilities;
+using System.Text.Json;
 using top_bod_be.Data;
 using top_bod_be.Models;
 
@@ -38,23 +39,25 @@ namespace top_bod_be.Services
             }
 
             var json = await response.Content.ReadAsStringAsync();
+            //TODO: add in error handling for if json is empty or null
 
-            //TODO: convert the json and pull the data within the 'items' kv pair
-            //var items = JsonSerializer.Serialize(json);
-            //var foodItem = JsonSerializer.Deserialize<NutritionDetail>(stringContent);
+            var foodItems = JsonSerializer.Deserialize<NutritionDetailList>(json);
 
-            var itemNutrition = new NutritionDetail
+            foreach (var food in foodItems.NutritionList)
             {
-                FoodName = foodItem.FoodName,
-                Calories = foodItem.Calories,
-                ServingInGrams = foodItem.ServingInGrams,
-                TotalCarbsInGrams = foodItem.TotalCarbsInGrams,
-                TotalProteinInGrams = foodItem.TotalProteinInGrams,
-                TotalFatInGrams = foodItem.TotalFatInGrams
-            };
-            
+                var itemNutrition = new NutritionDetail
+                {
+                    FoodName = food.FoodName,
+                    Calories = food.Calories,
+                    ServingInGrams = food.ServingInGrams,
+                    TotalCarbsInGrams = food.TotalCarbsInGrams,
+                    TotalProteinInGrams = food.TotalProteinInGrams,
+                    TotalFatInGrams = food.TotalFatInGrams
+                };
+
+                results.Add(itemNutrition);
+            }
             //await _data.SaveNutrition(itemNutrition);
-            results.Add(itemNutrition);
 
             return results;
         }
