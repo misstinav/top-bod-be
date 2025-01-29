@@ -56,8 +56,8 @@ namespace top_bod_be.Services
                 };
 
                 results.Add(itemNutrition);
+                await _data.SaveNutrition(itemNutrition);
             }
-            //await _data.SaveNutrition(itemNutrition);
 
             return results;
         }
